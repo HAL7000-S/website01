@@ -1,0 +1,117 @@
+
+    ' ******************************************************************************
+    ' C:\Users\2019M17\AppData\Local\Temp\swx3572\Macro1.swb - macro recorded on 08/08/23 by 2019M17
+    ' ******************************************************************************
+    Dim swApp As Object
+
+    Dim Part As Object
+    Dim boolstatus As Boolean
+    Dim longstatus As Long, longwarnings As Long
+
+    Sub main()
+
+    Set swApp = _
+    Application.SldWorks
+
+    Set Part = swApp.ActiveDoc
+    Dim myModelView As Object
+    Set myModelView = Part.ActiveView
+    myModelView.FrameState = swWindowState_e.swWindowMaximized
+
+    
+    Dim myFeature As Object
+    Set myFeature = Part.InsertPart2("C:\Users\2019M12\Downloads\test_maru.SLDPRT", 17)
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, True, 0, Nothing, 0)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, False, 1, Nothing, 0)
+
+    Set myFeature = Part.FeatureManager.InsertMoveCopyBody2(0.045033564, 0.06448158, 0.014632292, 0, 0.045033564, 0.06448158, 0, 0, 0, 0, True, 1)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, True, 0, Nothing, 0)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, False, 1, Nothing, 0)
+
+    Set myFeature = Part.FeatureManager.InsertMoveCopyBody2(0.052031489, 0.060206399, 0.008240978, 0, 0.052031489, 0.060206399, 0, 0, 0, 0, True, 1)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, True, 0, Nothing, 0)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, False, 1, Nothing, 0)
+
+    Set myFeature = Part.FeatureManager.InsertMoveCopyBody2(0.058145819, 0.054755113, -0.004576175, 0, 0.058145819, 0.054755113, 0, 0, 0, 0, True, 1)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, True, 0, Nothing, 0)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, False, 1, Nothing, 0)
+
+    Set myFeature = Part.FeatureManager.InsertMoveCopyBody2(0.061742782, 0.043974580000000006, -0.025574698000000003, 0, 0.061742782, 0.043974580000000006, 0, 0, 0, 0, True, 1)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, True, 0, Nothing, 0)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, False, 1, Nothing, 0)
+
+    Set myFeature = Part.FeatureManager.InsertMoveCopyBody2(0.052886202, 0.050524503000000005, -0.032408706, 0, 0.052886202, 0.050524503000000005, 0, 0, 0, 0, True, 1)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, True, 0, Nothing, 0)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, False, 1, Nothing, 0)
+
+    Set myFeature = Part.FeatureManager.InsertMoveCopyBody2(0.05065263800000001, 0.035617699, -0.05065263800000001, 0, 0.05065263800000001, 0.035617699, 0, 0, 0, 0, True, 1)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, True, 0, Nothing, 0)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, False, 1, Nothing, 0)
+
+    Set myFeature = Part.FeatureManager.InsertMoveCopyBody2(0.032272296, 0.03669882, -0.063337947, 0, 0.032272296, 0.03669882, 0, 0, 0, 0, True, 1)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, True, 0, Nothing, 0)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, False, 1, Nothing, 0)
+
+    Set myFeature = Part.FeatureManager.InsertMoveCopyBody2(0.018074385, 0.0201358, -0.075285232, 0, 0.018074385, 0.0201358, 0, 0, 0, 0, True, 1)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, True, 0, Nothing, 0)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, False, 1, Nothing, 0)
+
+    Set myFeature = Part.FeatureManager.InsertMoveCopyBody2(0.005883148, 0.027882889, -0.074752479, 0, 0.005883148, 0.027882889, 0, 0, 0, 0, True, 1)
+
+    
+    Part.ClearSelection2 True
+
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, True, 0, Nothing, 0)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0, 0, 0, False, 1, Nothing, 0)
+
+    Set myFeature = Part.FeatureManager.InsertMoveCopyBody2(-0.0, 0.027002751000000002, -0.075305056, 0, -0.0, 0.027002751000000002, -0.075305056, 0, 0, 0, False, 1)
+
+
+    boolstatus = Part.Extension.SelectByID2("組み合わせ1", "SOLIDBODY", 0,0,0, True, 0, Nothing, 0)
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0,0,0, True, 0, Nothing, 0)
+    boolstatus = Part.Extension.SelectByID2("ﾎﾞﾃﾞｨ-移動/ｺﾋﾟｰ10", "SOLIDBODY", 0,0,0, True, 0, Nothing, 0)
+
+    Part.ClearSelection2 True
+    boolstatus = Part.Extension.SelectByID2("ﾎﾞﾃﾞｨ-移動/ｺﾋﾟｰ10", "BODYFEATURE", 0, 0, 0, False, 0, Nothing, 0)
+    boolstatus = Part.Extension.SelectByID2("組み合わせ1", "SOLIDBODY", 0,0,0, True, 2, Nothing, 0)
+    boolstatus = Part.Extension.SelectByID2("<test_maru>-<回転1>", "SOLIDBODY", 0,0,0, True, 2, Nothing, 0)
+    boolstatus = Part.Extension.SelectByID2("ﾎﾞﾃﾞｨ-移動/ｺﾋﾟｰ10", "SOLIDBODY", 0,0,0, True, 2, Nothing, 0)
+    
+End Sub

@@ -1,0 +1,381 @@
+:root {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                      supported by Chrome, Edge, Opera and Firefox */
+
+  --show0:0px;
+    --bg: rgba(256, 256, 256, 0.1);
+  --out: rgba(var(--main),0.3);
+  --main: 80, 177, 235;
+  --bg2: rgba(150, 150, 150, 0.1);
+  --fheight: 2.7rem;
+  --fwidth: 2.7rem; /*12.5vw*/
+  --fsize: 16px;
+  --fsizebut: 12px;
+  --ripple-color: rgba(100, 50, 10, 1);
+  
+}
+.action {
+  text-transform:uppercase;
+  font-family: "Arial", monospace;
+  font-size: var(--fsizebut);
+  width: auto;
+  /*max-width:calc(50vw - 2px);*/
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-flow: wrap;
+  gap: 5px 10px;
+
+  
+  background: var(--bg);
+
+  text-align: center;
+  outline: 0px solid var(--out);
+  padding-top: 20px;
+
+}
+.action hr {
+  width: 100%;
+  opacity: 0;
+}
+#exp,
+#play,
+#submit{
+  background:#fff;
+  font-weight:bold;
+  width: auto;
+  align-self: center;
+  color: rgb(var(--main));
+  vertical-align: middle;
+  border: 1px solid #aaa;
+  text-decoration-style: dashed;
+  border-radius: 40px;
+  padding: 15px;
+}
+#exp:hover,
+#play:hover,
+#submit:hover{
+  background-color: rgba(var(--main),0.1);
+  cursor: pointer;
+  outline: 3px solid gba(var(--main),0.15);
+}
+#exp:active,
+#play:active,
+#submit:active{
+  background-color: rgba(var(--main),0.2);
+  outline: 1px solid rgba(var(--main),0.15);
+  border-color: rgba(var(--main),0.9);
+}
+.parent {
+  display: block;
+  font-size: 0;
+  overflow:auto;
+  white-space:nowrap;
+}
+#res {
+  align-self: stretch;
+  user-select: text;
+  background: rgba(var(--main),0.85);
+  margin: auto;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  font-weight: bold;
+  color: #fefefe;
+  outline: 1px solid rgba(var(--main),0.1);
+  width: max-content;
+  padding: 15px;
+  font-size: var(--fsize);
+ 
+}
+
+.col {
+  display: inline-block;
+  width: var(--fwidth);
+  vertical-align: top;
+  background: rgba(0, 0, 0, 0);
+}
+
+.row {
+  font-size: var(--fsize);
+  color: transparent;
+  /*Ripple effect position absolute*/
+  position: relative;
+  overflow: hidden;
+
+  /*---*/
+  width: var(--fwidth);
+  background: var(--bg);
+  line-height: var(--fheight);
+  height: var(--fheight);
+  text-align: center;
+  outline: 1px solid var(--out);
+  -webkit-transition: background-color 0.2s ease-out;
+  -moz-transition: background-color 0.2s ease-out;
+  -o-transition: background-color 0.2s ease-out;
+  transition: background-color 0.2s ease-out;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.clicked {
+  color: white;
+  font-weight:bold;
+  background: #a1ffc2;
+}
+
+
+
+.ripple {
+  mix-blend-mode: color-dodge;
+  z-index: 7;
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  background-color: var(--ripple-color);
+  animation: rippleEffect 425ms linear;
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+.rainbow {
+  background: linear-gradient(
+    124deg,
+    #54bbc4,
+    #fb9f89,
+    #d0e3c4,
+    #3b6064,
+    #725d68,
+    #c9f299,
+    #f7f6c5,
+    #0b3c49,
+    #0b3c49
+  );
+  background-size: 1800% 1800%;
+
+  -webkit-animation: rainbow 11s ease infinite;
+  -z-animation: rainbow 11s ease infinite;
+  -o-animation: rainbow 11s ease infinite;
+  animation: rainbow 11s ease infinite;
+}
+
+@-webkit-keyframes rainbow {
+  0% {
+    background-position: 0% 82%;
+  }
+  50% {
+    background-position: 100% 19%;
+  }
+  100% {
+    background-position: 0% 82%;
+  }
+}
+@-moz-keyframes rainbow {
+  0% {
+    background-position: 0% 82%;
+  }
+  50% {
+    background-position: 100% 19%;
+  }
+  100% {
+    background-position: 0% 82%;
+  }
+}
+@-o-keyframes rainbow {
+  0% {
+    background-position: 0% 82%;
+  }
+  50% {
+    background-position: 100% 19%;
+  }
+  100% {
+    background-position: 0% 82%;
+  }
+}
+@keyframes rainbow {
+  0% {
+    background-position: 0% 82%;
+  }
+  50% {
+    background-position: 100% 19%;
+  }
+  100% {
+    background-position: 0% 82%;
+  }
+}
+
+.c3 > .row,
+.c4 > .row,
+.c7 > .row,
+.c8 > .row,
+.c11 > .row,
+.c12 > .row,
+.c15 > .row,
+.c16 > .row,
+.c19 > .row,
+.c20 > .row,
+.c23 > .row,
+.c24 > .row,
+.c27 > .row,
+.c28 > .row,
+.c31 > .row,
+.c32 > .row,
+.c35 > .row,
+.c36 > .row,
+.c39 > .row,
+.c40 > .row,
+.c43 > .row,
+.c44 > .row,
+.c47 > .row,
+.c48 > .row,
+.c51 > .row,
+.c52 > .row,
+.c55 > .row,
+.c56 > .row,
+.c59 > .row,
+.c60 > .row,
+.c63 > .row,
+.c64 > .row,
+.c67 > .row,
+.c68 > .row,
+.c71 > .row,
+.c72 > .row,
+.c75 > .row,
+.c76 > .row,
+.c79 > .row,
+.c80 > .row,
+.c83 > .row,
+.c84 > .row,
+.c87 > .row,
+.c88 > .row,
+.c91 > .row,
+.c92 > .row,
+.c95 > .row,
+.c96 > .row,
+.c99 > .row,
+.c100 > .row,
+.c103 > .row,
+.c104 > .row,
+.c107 > .row,
+.c108 > .row,
+.c111 > .row,
+.c112 > .row,
+.c115 > .row,
+.c116 > .row,
+.c119 > .row,
+.c120 > .row,
+.c123 > .row,
+.c124 > .row,
+.c127 > .row,
+.c128 > .row {
+  background: var(--bg2);
+}
+.c3,
+.c5,
+.c7,
+.c9,
+.c11,
+.c13,
+.c15,
+.c17,
+.c19,
+.c21,
+.c23,
+.c25,
+.c27,
+.c29,
+.c31,
+.c33,
+.c35,
+.c37,
+.c39,
+.c41,
+.c43,
+.c45,
+.c47,
+.c49,
+.c51,
+.c53,
+.c55,
+.c57,
+.c59,
+.c61,
+.c63,
+.c65,
+.c67,
+.c69,
+.c71,
+.c73,
+.c75,
+.c77,
+.c79,
+.c81,
+.c83,
+.c85,
+.c87,
+.c89,
+.c91,
+.c93,
+.c95,
+.c97,
+.c99,
+.c101,
+.c103,
+.c105,
+.c107,
+.c109,
+.c111,
+.c113,
+.c115,
+.c117,
+.c119,
+.c121,
+.c123,
+.c125,
+.c127 {
+  box-shadow: -2px 0px 0px 0px var(--out);
+}
+
+.r0{
+  max-height:var(--show0);
+}
+.r0.clicked {
+  background: var(--ripple-color);
+}
+.r1.clicked,
+.r8.clicked {
+  background: #d62d53;
+}
+.r2.clicked,
+.r9.clicked {
+  background: #f7943d;
+}
+.r3.clicked,
+.r10.clicked {
+  background: #edd929;
+}
+.r4.clicked,
+.r11.clicked {
+  background: #95c631;
+}
+.r5.clicked,
+.r12.clicked {
+  background: #11826d;
+}
+.r6.clicked,
+.r13.clicked {
+  background: #5b37cc;
+}
+.r7.clicked {
+  background: #ea57b2;
+}
+.r7 {
+  border-top: 2px solid var(--out);
+}
