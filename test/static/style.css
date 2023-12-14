@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'CustomFont';
+  src: url('tes/GonunneFont.otf') format('opentype'),
+}
+
+body {
+  font-family: 'CustomFont', sans-serif;
+  color: #ff0000; /* 色を16進数で指定（ここでは赤色） */
+}

@@ -7,7 +7,11 @@
     <title>music_form_site</title>
 
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/reseter.css/2.0.0/reseter.min.css'>
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('css',filename='https://hal7000-s.github.io/website01/css/music_style.css') }}"/>
+
+    <!-- 自作css -->
+    <link rel= "stylesheet" href="static/music_style.css">
+    <!-- 自作js -->
+    <script src="static/music_script.js"></script>
 </head>
 
 <body>
@@ -2195,13 +2199,14 @@
  <div class="action">
     <a id="exp" >export</a>
     <hr>
-   <form action="/form_post" method="POST">        
-     <!-- <div class="form-check form-check-inline"> -->
+      <!-- リンクを模したボタン -->
+      <a href="send_check.html">
+        <button>Click me</button>
+      </a>
+    <!-- <form action="/form_post" method="POST">        
         <input class="form-check-input" type="textarea" id="res" name="data" value="0" >
-    <button onclick="location.href='/website01/music_form'">送信</button>
-    <!-- <button type="submit" id="submit">送信</button> -->
-     <!-- </div> -->
-    </form>
+    <button type="submit" id="submit">送信</button>
+    </form> -->
     
   </div>
 
@@ -2209,7 +2214,7 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js'></script>
   <script src='https://cdn.jsdelivr.net/gh/MachinisteWeb/konami-code-js@master/src/konami-code.js'></script>
   
-  <script src="{{ url_for('js', filename='https://hal7000-s.github.io/website01/js/music_script.js') }}"></script>
+  <!-- <script src="{{ url_for('js', filename='https://hal7000-s.github.io/website01/js/music_script.js') }}"></script> -->
 
 </body>
 </html>
