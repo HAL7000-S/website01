@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'GonunneFont';
-    src: url('https://hal7000-s.github.io/website01/font/GonunneFont.otf') format('opentype'),
+    src: url('/website01/root_static/font/GonunneFont.otf') format('opentype'),
 }
 @font-face {
   font-family: 'ArkaFont';
-  src: url('https://hal7000-s.github.io/website01/font/alblant.ttf') format('opentype'),
+  src: url('/website01/root_static/font/alblant.ttf') format('opentype'),
 }
 
 .gonunne {
