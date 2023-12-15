@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'GonunneFont';
-    src: url('font/GonunneFont.otf') format('opentype'),
+    src: url('/website01/font/GonunneFont.otf') format('opentype'),
 }
 @font-face {
   font-family: 'ArkaFont';
-  src: url('font/alblant.ttf') format('opentype'),
+  src: url('/website01/font/alblant.ttf') format('opentype'),
 }
 
 .gonunne {
