@@ -1,21 +1,87 @@
-const hour = document.getElementById("hour");
-const min = document.getElementById("min");
-const sec = document.getElementById("sec");
+let SenteTime = 0;
+let GoteTime = 0;
+let nowTurn = "Sente";
 
-function countdown() {
-  const now = new Date(); // 現在時刻を取得
-  const tomorrow = new Date(now.getFullYear(),now.getMonth(),now.getDate()+1); // 明日の0:00を取得
-  const diff = tomorrow.getTime() - now.getTime(); // 時間の差を取得（ミリ秒）
+function setTimers() {
+  let timeLimitMinutes = parseInt(document.getElementById('timeLimitInput').value, 10);
+  let SecondsLimit = parseInt(document.getElementById('SecondsLimitInput').value, 10);
 
-  // ミリ秒から単位を修正
-  const calcHour = Math.floor(diff / 1000 / 60 / 60);
-  const calcMin = Math.floor(diff / 1000 / 60) % 60;
-  const calcSec = Math.floor(diff / 1000) % 60;
+  if (isNaN(SecondsLimit) || SecondsLimit < 0) {
+    alert('正しい時間を入力してください。');
+    return;
+  }
 
-  // 取得した時間を表示（2桁表示）
-  hour.innerHTML = calcHour < 10 ? '0' + calcHour : calcHour;
-  min.innerHTML = calcMin < 10 ? '0' + calcMin : calcMin;
-  sec.innerHTML = calcSec < 10 ? '0' + calcSec : calcSec;
+  //値を代入
+  SenteTime = timeLimitMinutes*60;
+  GoteTime = timeLimitMinutes*60;
+  //初期表示
+  _updateTimer("SenteTime",SenteTime);
+  _updateTimer("GoteTime",GoteTime);
+
+  //手番を設定しスタート
+  nowTurn = "Sente";
+  startTimers();
 }
-countdown();
-setInterval(countdown,1000);
+
+function startTimers() {
+  //先手の時
+  if (nowTurn=="Sente"){
+    // タイマーを開始
+    SenteTimerId = setInterval(function() {
+      SenteTime -= 0.1;
+
+      if (SenteTime <= 0) {
+        clearInterval(SenteTimerId);
+        alert('先手の時間切れです！');
+      }
+
+      _updateTimer('SenteTime', Math.round(SenteTime));
+    }, 100); // 0.1秒ごとにカウントダウン
+  }
+
+  //後手の時
+  else{
+    GoteTimerId = setInterval(function() {
+      GoteTime -= 0.1;
+  
+      if (GoteTime <= 0) {
+        clearInterval(GoteTimerId);
+        alert('後手の時間切れです！');
+      }
+  
+      _updateTimer('GoteTime', Math.round(GoteTime));
+    }, 100); // 0.1秒ごとにカウントダウン
+  }
+}
+
+//手番交代
+function changeTurn() {
+  if (nowTurn == "Sente"){
+    clearInterval(SenteTimerId);
+    nowTurn="Gote"
+  } else {
+    clearInterval(GoteTimerId);
+    nowTurn="Sente"
+  }
+  startTimers()
+}
+
+//休憩
+function stopTimers(){
+  if (nowTurn == "Sente"){
+    clearInterval(SenteTimerId);
+  } else {
+    clearInterval(GoteTimerId);
+  }
+}
+//再開
+function resumeTimers() {
+  startTimers();
+}
+
+//表示更新
+function _updateTimer(timerId, time) {
+  var minutes = Math.floor(time / 60);
+  var seconds = time % 60;
+  document.getElementById(timerId).textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}

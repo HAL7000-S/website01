@@ -16,6 +16,9 @@
 
 body {
   background-image: url("/website01/root_static/images/old_paper.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
   background-size: cover;
 }
 

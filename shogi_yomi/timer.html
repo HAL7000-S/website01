@@ -1,20 +1,31 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
-  <title>Countdown Timer</title>
-  <meta chrset="utf-8" />
-  <link rel="stylesheet" href="./shogi_yomi/static/timer.css" />
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大麻ー</title>
+  <link rel="stylesheet" href="/website01/shogi_yomi/static/timer.css">
+  </head>
 <body>
-  <div class="countdown-container">
-    <h1>Countdown to end of today 🎉</h1>
-    <h2>You have ...</h2>
-    <div class="time-container">
-      <p class="time"><span id="hour"></span>hours</p>
-      <p class="time"><span id="min"></span>minutes</p>
-      <p class="time"><span id="sec"></span>seconds</p>
-    </div>
+
+  <h1>将棋タイマー</h1>
+
+  <label for="timeLimitInput">　　　持ち時間（分）：</label>
+  <input type="number" id="timeLimitInput" min="0" value="10">
+  <br>
+  <label for="SecondsLimitInput">時間使い切り後（秒）：</label>
+  <input type="number" id="SecondsLimitInput" min="0" value="30">
+  <br>
+  <button onclick="setTimers()">対局開始</button>
+  <button onclick="changeTurn()">手番交代</button>
+  <button onclick="stopTimers()">休憩</button>
+  <button onclick="resumeTimers()">再開</button>
+  
+  <div id="timer-container">
+    <div id="SenteTimer">先手の持ち時間: <span id="SenteTime"></span></div>
+    <div id="GoteTimer">後手の持ち時間: <span id="GoteTime"></span></div>
   </div>
-  <script src="./shogi_yomi/static/timer.js"></script>
+  <script src="/website01/shogi_yomi/static/timer.js"></script>
+
 </body>
 </html>
