@@ -15,11 +15,12 @@ function setTimers() {
   SenteTime = timeLimitMinutes*60;
   GoteTime = timeLimitMinutes*60;
   //初期表示
-  _updateTimer("SenteTime",SenteTime);
-  _updateTimer("GoteTime",GoteTime);
+  updateTimer("SenteTime",SenteTime);
+  updateTimer("GoteTime",GoteTime);
 
-  //手番を設定しスタート
+  //手番を設定し、現在のカウントを止め、スタート
   nowTurn = "Sente";
+  stopTimers();
   startTimers();
 }
 
@@ -35,7 +36,7 @@ function startTimers() {
         alert('先手の時間切れです！');
       }
 
-      _updateTimer('SenteTime', Math.round(SenteTime));
+      updateTimer('SenteTime', Math.round(SenteTime));
     }, 100); // 0.1秒ごとにカウントダウン
   }
 
@@ -49,7 +50,7 @@ function startTimers() {
         alert('後手の時間切れです！');
       }
   
-      _updateTimer('GoteTime', Math.round(GoteTime));
+      updateTimer('GoteTime', Math.round(GoteTime));
     }, 100); // 0.1秒ごとにカウントダウン
   }
 }
@@ -80,7 +81,7 @@ function resumeTimers() {
 }
 
 //表示更新
-function _updateTimer(timerId, time) {
+function updateTimer(timerId, time) {
   var minutes = Math.floor(time / 60);
   var seconds = time % 60;
   document.getElementById(timerId).textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
