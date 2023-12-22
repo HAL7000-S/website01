@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正規分布のグラフとランダム値生成</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/website01/study_simulator/static/probability.css">
+</head>
+<body>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    <a href="/website01/study_simulator/home.html">シミュレータまとめへ戻る。</a>
+    <h1>正規分布のグラフとランダム値生成</h1>
+
+        <h2>サンプリングされた値(<span id="num"></span>個目): <span id="randomValue"></span></h2>
+        <div  style="display: grid; grid-template-columns: repeat(3, 1fr);">
+            <h2>サンプル</h2>
+            <h2>平均・期待値</h2>
+            <h2>分散</h2>
+        </div>
+        <div class="output-container" style="display: grid; grid-template-columns: repeat(3, 1fr);">
+            <div id="OutputValue" class="output">
+            </div>
+            <div id="OutputMean" class="output">
+            </div>
+            <div id="OutputVariance" class="output">
+            </div>
+        </div>
+
+        <label for="meanInput">平均:</label>
+        <input type="number" id="meanInput" placeholder="0">
+
+        <label for="stdDevInput">標準偏差:</label>
+        <input type="number" id="stdDevInput" placeholder="1">
+
+        <button onclick="Sampling()">サンプリング</button>
+        <button onclick="generateNormalDistribution()">分布生成</button>
+
+        <canvas id="chart"></canvas>
+
+    </div>
+
+    <script src="/website01/study_simulator/static/probability.js"></script>
+</body>
+</html>
