@@ -13,6 +13,7 @@ window.onload = function () {
 
 // 相手の名前代入
 if (!localStorage.getItem("name")) {
+    localStorage.setItem("name", yourName);
     setUserName();
 } else {
     const storedName = localStorage.getItem("name");

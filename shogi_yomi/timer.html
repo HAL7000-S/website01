@@ -19,9 +19,10 @@
   <input type="number" id="SecondsLimitInput" min="0" value="30">
   <br>
   <button onclick="setTimers()" class="btn btn--orange btn--radius">対局開始</button>
-  <button onclick="changeTurn()" class="btn btn--orange btn--radius">手番交代</button>
   <button onclick="stopTimers()" class="btn btn--orange btn--radius">休憩</button>
   <button onclick="resumeTimers()" class="btn btn--orange btn--radius">再開</button>
+
+  <button onclick="changeTurn()" class="btn btn--orange btn--radius">手番交代</button>
   
   <div id="timer-container">
     <div id="SenteTimer">先手の持ち時間: <span id="SenteTime"></span></div>
