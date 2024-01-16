@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibration Simulator</title>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+        #inputContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        #inputContainer div {
+            flex: 1;
+            text-align: left;
+        }
+        label {
+            display: block;
+        }
+        canvas {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <a href="/website01/study_simulator/home.html">シミュレータまとめへ戻る。</a>
+    <h1>一次元振動シミュレータ</h1>
+    <div id="inputContainer">
+        <div>
+            <label for="mass">質量 (kg): </label>
+            <input type="number" id="mass" step="0.1" value="1">
+        </div>
+        <div>
+            <label for="dampingCoefficient">ダンパ係数 (Ns/m): </label>
+            <input type="number" id="dampingCoefficient" step="0.1" value="0.5">
+        </div>
+        <div>
+            <label for="springConstant">ばね定数 (N/m): </label>
+            <input type="number" id="springConstant" step="0.1" value="10">
+        </div>
+        <div>
+            <label for="angularFrequency">角振動数 (rad/s): </label>
+            <input type="number" id="angularFrequency" step="0.1" value="5">
+        </div>
+        <div>
+            <label for="dampingRatio">減衰比: </label>
+            <input type="number" id="dampingRatio" step="0.01" value="0.1">
+        </div>
+        <div>
+            <label for="initialPosition">初期位置: </label>
+            <input type="number" id="initialPosition" step="0.1" value="0">
+        </div>
+        <div>
+            <label for="initialVelocity">初期速度: </label>
+            <input type="number" id="initialVelocity" step="0.1" value="0">
+        </div>
+    </div>
+    <button onclick="updateGraph()">更新</button>
+    <div>
+        <h2>数式:</h2>
+        <p id="equation"></p>
+    </div>
+    <div>
+        <h2>振動のグラフ:</h2>
+        <canvas id="vibrationChart" width="800" height="400"></canvas>
+    </div>
+
+    <script>
+        function updateGraph() {
+            // 入力からパラメータを取得
+            const mass = parseFloat(document.getElementById('mass').value);
+            const dampingCoefficient = parseFloat(document.getElementById('dampingCoefficient').value);
+            const springConstant = parseFloat(document.getElementById('springConstant').value);
+            const angularFrequency = parseFloat(document.getElementById('angularFrequency').value);
+            const dampingRatio = parseFloat(document.getElementById('dampingRatio').value);
+            const initialPosition = parseFloat(document.getElementById('initialPosition').value);
+            const initialVelocity = parseFloat(document.getElementById('initialVelocity').value);
+
+            // 振動数式の表示
+            const equationText = `振動数式: x(t) = A * exp(-ζωnt) * cos(ωdt + φ)`;
+            document.getElementById('equation').innerText = equationText;
+
+            // グラフの更新
+            updateChart(mass, dampingCoefficient, springConstant, angularFrequency, dampingRatio, initialPosition, initialVelocity);
+        }
+
+        function updateChart(m, c, k, ωn, ζ, initialPosition, initialVelocity) {
+            const canvas = document.getElementById('vibrationChart');
+            const ctx = canvas.getContext('2d');
+
+            // グラフのデータ生成
+            const data = generateVibrationData(m, c, k, ωn, ζ, initialPosition, initialVelocity);
+
+            // Chart.jsを使用してグラフを描画
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.time,
+                    datasets: [{
+                        label: '振動',
+                        data: data.displacement,
+                        borderColor: 'blue',
+                        borderWidth: 2,
+                        fill: false,
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom'
+                        },
+                        y: {
+                            type: 'linear',
+                            position: 'left'
+                        }
+                    }
+                }
+            });
+        }
+
+        function generateVibrationData(m, c, k, ωn, ζ, initialPosition, initialVelocity) {
+            // グラフのデータ生成
+            const time = [];
+            const displacement = [];
+            const dt = 0.1; // 時間刻み
+            let x = initialPosition;
+            let v = initialVelocity;
+
+            for (let t = 0; t <= 20; t += dt) {
+                const acceleration = (-c * v - k * x) / m;
+                v += acceleration * dt;
+                x += v * dt;
+
+                time.push(t);
+                displacement.push(x);
+            }
+
+            return { time, displacement };
+        }
+    </script>
+</body>
+</html>

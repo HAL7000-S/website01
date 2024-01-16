@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRコードを人力で読むための辞書</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="/website01/index.html">最初のサイトへ戻る。</a>
+    <h1>QRコードを人力で読むための辞書</h1>
+
+    <p>QRコードを人力で読みたいという特殊な方向けのサイトです。</p>
+
+    <h2>読み取り手順の概要</h2>
+    <img src="/website01/QRcode/static/meisi.jpg" alt="QR Code Example">
+
+    <h3>1.フォーマット情報(画像左上赤色format-info.)</h3>
+    <p>赤色のフォーマット情報部分を読み取ります。</p>
+    <p>結果：11,101,111,11000100</p>
+    <p>(情報が分かりやすいように少し区切って書きます。)</p>
+
+    <h3>2.マスク処理(画像左XOR-mask)</h3>
+    <p>1のデータと10101010...というマスクとの排他的論理和を取ります。</p>
+    <p>1のデータ：11,101,111,11000100</p>
+    <p>2のマスク：10,101,010,10101010</p>
+    <p>_＿＿結果：01,000,101,01101110</p>
+
+    <h3>3.全体のマスクパターン取得・マスクかけ（画像左下mask）</h3>
+    <table>
+        <tr>
+            <th>暗号</th>
+            <th>説明</th>
+        </tr>
+        <tr>
+            <td>黒</td>
+            <td>データの一部を表す</td>
+        </tr>
+        <tr>
+            <td>白</td>
+            <td>データの一部ではない領域を表す</td>
+        </tr>
+    </table>
+
+    <h3>4.モード確認（QR右下赤色mode）</h3>
+    <table>
+        <tr>
+            <th>暗号</th>
+            <th>説明</th>
+        </tr>
+        <tr>
+            <td>黒</td>
+            <td>データの一部を表す</td>
+        </tr>
+        <tr>
+            <td>白</td>
+            <td>データの一部ではない領域を表す</td>
+        </tr>
+    </table>
+    <h3>5.データ長さ確認（QR右下黄色length）</h3>
+    <p></p>
+    <h3>6.本文を読む（QR右の青色と緑色交互に）</h3>
+    <img></img>
+    <h3>7.textに戻す（画像右上）</h3>
+    <table>
+        <tr>
+            <th>暗号</th>
+            <th>説明</th>
+        </tr>
+        <tr>
+            <td>黒</td>
+            <td>データの一部を表す</td>
+        </tr>
+        <tr>
+            <td>白</td>
+            <td>データの一部ではない領域を表す</td>
+        </tr>
+    </table>
+
+
+    <h2>雑学</h2>
+
+    <h3>1. QRコードとは？</h3>
+    <p>QRコード（キューアールコード）は、1994年（平成6年）に日本・愛知県の自動車部品メーカーであるデンソーの開発部門（現在は分社化してデンソーウェーブ）が発明したマトリックス型二次元コードである[1][2]。データ読み取りや店頭決済用コードとして世界中で多用されている。（wiki）</p>
+
+
+    <h2>まとめ</h2>
+    <p>QRコードは現代社会で広く利用されている技術であり、その基本を理解することは重要です。このウェブサイトがQRコードに関する知識の向上に貢献できれば幸いです。(by chatgpt)</p>
+
+    <a href="/website01/index.html">最初のサイトへ戻る。</a>
+
+</body>
+</html>
