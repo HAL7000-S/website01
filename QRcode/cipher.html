@@ -34,81 +34,101 @@
     <h1>QRコードを人力で読むための辞書</h1>
 
     <p>QRコードを人力で読みたいという特殊な方向けのサイトです。</p>
-
+    <a href="https://www.swetake.com/qrcode/qr1.html" rel="noopener noreferrer">
+        参考1：https://www.swetake.com/qrcode/qr1.html</p>
+    </a>
+    <a href="https://eleclog.quitsq.com/2014/01/" rel="noopener noreferrer">
+        参考2：https://eleclog.quitsq.com/2014/01/</p>
+    </a>
+    
     <h2>読み取り手順の概要</h2>
     <img src="/website01/QRcode/static/meisi.jpg" alt="QR Code Example">
+    <h3>0.読まない場所</h3>
+    <p>黄色の部分はファインダパターン（四角）とタイミングパターン（横断歩道的なとこ）なので、機械でない我々は読まなくていいです。</p>
 
     <h3>1.フォーマット情報(画像左上赤色format-info.)</h3>
     <p>赤色のフォーマット情報部分を読み取ります。</p>
-    <p>結果：11,101,111,11000100</p>
-    <p>(情報が分かりやすいように少し区切って書きます。)</p>
+    <p>結果：11,101,1_111_000100</p>
+    <p>(情報が分かりやすいように,で区切って書きます。)</p>
+    <p>(タイミングパターンの場所は_で埋めました)</p>
 
     <h3>2.マスク処理(画像左XOR-mask)</h3>
     <p>1のデータと10101010...というマスクとの排他的論理和を取ります。</p>
-    <p>1のデータ：11,101,111,11000100</p>
-    <p>2のマスク：10,101,010,10101010</p>
-    <p>_＿＿結果：01,000,101,01101110</p>
+    <p>1のデータ：11,101,1111000100</p>
+    <p>2のマスク：10,101,0101010101</p>
+    <p>_＿＿結果：01,000,1010010001</p>
+    <p>カンマで区切ったものを左から順に0,1,2とすると</p>
+    <table>
+        <tr>
+            <th>番号</th>
+            <th>内容</th>
+            <th>例</th>
+            <th>今回の値</th>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>誤り訂正レベル</td>
+            <td>11:L<br>
+                10:M<br>
+                01:Q<br>
+                00:H
+            </td>
+            <td>10 なので M</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>マスク参照子</td>
+            <td>後述</td>
+            <td>000</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Bose-Chaudhuri-Hocquenghem符号<br>(BCH)による誤り訂正ビット</td>
+            <td>理解できぬ
+                <a href="https://www.swetake.com/qrcode/qr6.html" rel="noopener noreferrer">
+                    (参照)
+                </a>
+            </td>
+            <td>1010010001</td>
+        </tr>
+    </table>
 
     <h3>3.全体のマスクパターン取得・マスクかけ（画像左下mask）</h3>
-    <table>
-        <tr>
-            <th>暗号</th>
-            <th>説明</th>
-        </tr>
-        <tr>
-            <td>黒</td>
-            <td>データの一部を表す</td>
-        </tr>
-        <tr>
-            <td>白</td>
-            <td>データの一部ではない領域を表す</td>
-        </tr>
-    </table>
+    <a href="https://en.wikipedia.org/wiki/QR_code" rel="noopener noreferrer">
+        参考：https://en.wikipedia.org/wiki/QR_code</p>
+        <img src="/website01/QRcode/static/QRMaskFormat.png" alt="QR Code Example">
+    </a>
 
     <h3>4.モード確認（QR右下赤色mode）</h3>
-    <table>
-        <tr>
-            <th>暗号</th>
-            <th>説明</th>
-        </tr>
-        <tr>
-            <td>黒</td>
-            <td>データの一部を表す</td>
-        </tr>
-        <tr>
-            <td>白</td>
-            <td>データの一部ではない領域を表す</td>
-        </tr>
-    </table>
+        <p></p>
     <h3>5.データ長さ確認（QR右下黄色length）</h3>
-    <p></p>
+        <p></p>
     <h3>6.本文を読む（QR右の青色と緑色交互に）</h3>
-    <img></img>
+        <img></img>
     <h3>7.textに戻す（画像右上）</h3>
-    <table>
-        <tr>
-            <th>暗号</th>
-            <th>説明</th>
-        </tr>
-        <tr>
-            <td>黒</td>
-            <td>データの一部を表す</td>
-        </tr>
-        <tr>
-            <td>白</td>
-            <td>データの一部ではない領域を表す</td>
-        </tr>
-    </table>
+        <p></p>
+    
 
+        <h2>まとめ</h2>
+    <p>QRコードは現代社会で広く利用されている技術であり、その基本を理解することは重要です。このウェブサイトがQRコードに関する知識の向上に貢献できれば幸いです。(by chatgpt)</p>
 
+    <a href="/website01/index.html">最初のサイトへ戻る。</a>
+    
     <h2>雑学</h2>
 
     <h3>1. QRコードとは？</h3>
     <p>QRコード（キューアールコード）は、1994年（平成6年）に日本・愛知県の自動車部品メーカーであるデンソーの開発部門（現在は分社化してデンソーウェーブ）が発明したマトリックス型二次元コードである[1][2]。データ読み取りや店頭決済用コードとして世界中で多用されている。（wiki）</p>
 
-
-    <h2>まとめ</h2>
-    <p>QRコードは現代社会で広く利用されている技術であり、その基本を理解することは重要です。このウェブサイトがQRコードに関する知識の向上に貢献できれば幸いです。(by chatgpt)</p>
+    <h3>2. 情報理論についてのノート</h3>
+    <img src="/website01/QRcode/static/ronri.jpg">
+    <img src="/website01/QRcode/static/meidaironri.jpg">
+    <img src="/website01/QRcode/static/nishinsu.jpg">
+    <img src="/website01/QRcode/static/karuno.jpg">
+    <img src="/website01/QRcode/static/flipflop.jpg">
+    <img src="/website01/QRcode/static/flipflop2.jpg">
+    <img src="/website01/QRcode/static/zyouhouriron.jpg">
+    <img src="/website01/QRcode/static/hafuman.jpg">
+    <img src="/website01/QRcode/static/automaton.jpg">
 
     <a href="/website01/index.html">最初のサイトへ戻る。</a>
 
