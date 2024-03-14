@@ -36,3 +36,8 @@ body {
   max-width: 50%; /* 画像が親要素内で最大の幅に収まるように */
   margin-right: 20px; /* 画像と文章の間にスペースを設定 */
 }
+
+/* 空白 */
+.mb5 {
+  margin-bottom: 5em;
+}
