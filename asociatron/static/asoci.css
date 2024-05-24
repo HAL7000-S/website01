@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+h1, h2 {
+    color: #333;
+}
+.section {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.formula, .matrix {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.input{
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 50px;
+    font-size: 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.nodes {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+.node {
+    width: 60px;
+    height: 60px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+}
+
+.button_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button{
+    font-size: 18px;
+}
