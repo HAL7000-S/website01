@@ -31,23 +31,30 @@ h1, h2 {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-.nodes {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 20px;
+
+
+
+.graph {
+    width: 70%; /* 幅を指定します。必要に応じて調整してください。 */
+    margin: 0 auto; /* 左右のマージンを自動に設定して中央揃えにします。 */
+    border: 1px solid black; /* 視覚的に確認できるようにボーダーを追加します。 */
+    padding: 20px; /* パディングを追加してコンテンツからスペースを確保します。 */
+    text-align: center; /* オプション：コンテンツを中央揃えにします。 */
 }
 .node {
-    width: 60px;
-    height: 60px;
-    background-color: #4CAF50;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-weight: bold;
+    fill: lightgray;
+    stroke: black;
+    stroke-width: 2px;
+    cursor: pointer;
 }
+.highlighted-akane {
+    fill: salmon;
+}
+.highlighted-aoi {
+    fill: skyblue;
+}
+
+
 
 .button_div{
     display: flex;
@@ -55,5 +62,9 @@ h1, h2 {
     align-items: center;
 }
 .button{
-    font-size: 18px;
+    font-size: 30px;
+}
+.center-text {
+    text-align: center;
+    font-size: 24px; /* 少し大きめのフォントサイズ */
 }

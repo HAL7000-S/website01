@@ -15,87 +15,124 @@
 
 <body>
     <h1>あそしあとろん</h1>
+    <h3>ヘブの法則とも言うとか</h3>
     <div id="graph" style="text-align: center;"></div>
 
     <div class="section">
-        <h2>入力・記銘</h2>
-        <div>
-            <label>入力ベクトル:</label>
-            <div class="formula" id="inputVector" style="display: inline-block;">
-                $$
-                \boldsymbol{x} = 
-                X =  \begin{pmatrix}
-                x_0 \\
-                x_1 \\
-                x_2
-                \end{pmatrix} = 
-                $$
-            </div>
-            <div style="display: inline-block; vertical-align: middle;">
-                <input class="input" type="number" id="input1" placeholder="0" min="-1" max="1" step="1">
-                <input class="input" type="number" id="input2" placeholder="0" min="-1" max="1" step="1">
-                <input class="input" type="number" id="input3" placeholder="0" min="-1" max="1" step="1">
-            </div>
+        <h2>記憶ネットワーク</h2>
+        <div class="graph">
+            <svg width="400" height="350">
+                <!-- arrow head -->
+                <!-- <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="black" />
+                    </marker>
+                </defs> -->
+    
+                <!-- arrow 12 -->
+                <line id="arrow12" class="arrow" x1="200" y1="100" x2="100" y2="273" stroke="black" stroke-width="1"></line>
+                <text id="text12" x="170" y="200" text-anchor="middle" font-size="15">m12</text>
+    
+                <!-- arrow 23 -->
+                <line id="arrow23" class="arrow" x1="100" y1="273" x2="300" y2="273" stroke="black" stroke-width="1"></line>
+                <text id="text23" x="200" y="250" text-anchor="middle" font-size="15">m23</text>
+    
+                <!-- arrow 31 -->
+                <line id="arrow31" class="arrow" x1="300" y1="273" x2="200" y2="100" stroke="black" stroke-width="1"></line>
+                <text id="text31" x="230" y="200" text-anchor="middle" font-size="15">m31</text>
+    
+                <!-- Node 1 -->
+                <circle id="node1" class="node" cx="200" cy="100" r="30"></circle>
+                <text x="200" y="105" text-anchor="middle" font-size="20">1</text>
+            
+                <!-- Node 2 -->
+                <circle id="node2" class="node" cx="100" cy="273" r="30"></circle>
+                <text x="100" y="278" text-anchor="middle" font-size="20">2</text>
+            
+                <!-- Node 3 -->
+                <circle id="node3" class="node" cx="300" cy="273" r="30"></circle>
+                <text x="300" y="278" text-anchor="middle" font-size="20">3</text>
+                
+            </svg>
         </div>
 
         <div class="button_div">
-            <button class="button" onclick="updateMatrix()">入力！</button>
+            <button class="button" onclick="updateMemoryOutput()">入力！</button>
         </div>
-
-        <div>
-            <label>記銘行列:</label>
-            <div class="formula" id="inputMatrix">
-                $$
-                X
-                = \boldsymbol{x}\boldsymbol{x}^T
-                = \begin{pmatrix}
-                x_1x_1 & x_1x_2 & x_1x_3 \\
-                x_2x_1 & x_2x_2 & x_2x_3 \\
-                x_3x_1 & x_3x_2 & x_3x_3
-                \end{pmatrix}
-                = \begin{pmatrix}
-                0 & 0 & 0 \\
-                0 & 0 & 0 \\
-                0 & 0 & 0
-                \end{pmatrix}
-                $$
-            </div>
-        </div>
-    </div>
-    
-    <div class="section">
-        <h2>状態・記憶</h2>
-
-        <div>
-            <label>記憶行列:</label>
-            <div class="formula" id="memoryMatrix">
-                $$
-                M
-                = \sum_t X_t
-                = \begin{pmatrix}
-                0 & 0 & 0 \\
-                0 & 0 & 0 \\
-                0 & 0 & 0
-                \end{pmatrix}
-                $$
-            </div>
+        <div class="center-text">
+            -> 記銘 -> 記憶 -> 想起
         </div>
     </div>
 
+
     <div class="section">
-        <h2>出力・想起</h2>
+        <h2>数式</h2>
+        <h3>入力ベクトル・記銘行列</h3>
+        <div class="formula" id="inputVector">
+            $$
+            \boldsymbol{x}
+            = \begin{pmatrix}
+            x_1 \\
+            x_2 \\
+            x_3
+            \end{pmatrix}
+            = \begin{pmatrix}
+            0 \\
+            0 \\
+            0
+            \end{pmatrix}
+            $$
+        </div>
+        <div class="formula" id="inputMatrix">
+            $$
+            X
+            = \boldsymbol{x}\boldsymbol{x}^T
+            = \begin{pmatrix}
+            x_1x_1 & x_1x_2 & x_1x_3 \\
+            x_2x_1 & x_2x_2 & x_2x_3 \\
+            x_3x_1 & x_3x_2 & x_3x_3
+            \end{pmatrix}
+            = \begin{pmatrix}
+            0 & 0 & 0 \\
+            0 & 0 & 0 \\
+            0 & 0 & 0
+            \end{pmatrix}
+            $$
+        </div>
+
+        <h3>状態・記憶行列</h3>
+        <div class="formula" id="memoryMatrix">
+            $$
+            M
+            = \sum_{t=1}^n X_t - nI
+            = \begin{pmatrix}
+            0 & 0 & 0 \\
+            0 & 0 & 0 \\
+            0 & 0 & 0
+            \end{pmatrix}
+            $$
+        </div>
+        <h3>出力ベクトル・想起</h3>
         <div>
-            <label>出力ベクトル（3次元）:</label>
-            <div class="formula" id="outputVector">
-                $$ \boldsymbol{y} 
-                = \phi(\phi(M)\boldsymbol{x})
-                =\begin{pmatrix}
-                0 \\
-                0 \\
-                0
-                \end{pmatrix}
-                $$
-            </div>
+        <div class="formula" id="outputVector">
+            $$ \boldsymbol{y} 
+            = \phi(\phi(M)\boldsymbol{x})
+            =\begin{pmatrix}
+            0 \\
+            0 \\
+            0
+            \end{pmatrix}
+            $$
+        </div>
+        <label>活性化関数:</label>
+        <div class="formula" id="outputVector">
+            $$ \phi(x) = 
+            \begin{cases}
+                1 & \text{if } x \geq 1 \\
+                -1 & \text{if } x \leq -1 \\
+                0 & \text{otherwise}
+            \end{cases}
+            $$
         </div>
     </div>
     
