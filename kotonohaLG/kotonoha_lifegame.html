@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>琴葉空間</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* スクロールバーを隠す */
+            width: 100%; /* 幅を100%に */
+            height: 100%; /* 高さを100%に */
+            background-color: white;
+        }
+        canvas {
+            display: block; /* ブロック要素にして余白をなくす */
+            background-color: white; /* 背景色を指定 */
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <a href="/website01/index.html">最初のサイトへ戻る。</a>
+    <a href="/website01/kotonohaLG/LG_guide.html">＜操作説明＞</a>
+    <canvas id="gridCanvas"></canvas>
+    <script>
+        const CELL_SIZE = 15;
+        const GRID_SIZE = {
+            width: Math.floor(window.innerWidth / CELL_SIZE),
+            height: Math.floor(window.innerHeight / CELL_SIZE)
+        };
+        const AKANE_COLOR = '#ff9d9d'; // Akane
+        const AOI_COLOR = '#9ddfff'; // Aoi
+        const EMPTY_COLOR = '#ffffff'; // White
+
+        const AKANE_ID = 1;
+        const AOI_ID = 2;
+
+        let updateInterval = 100; // 更新間隔（ミリ秒）
+        let lastUpdateTime = 0;
+
+
+
+        let grid = createRandomGrid();
+
+        const canvas = document.getElementById('gridCanvas');
+        canvas.width = GRID_SIZE.width * CELL_SIZE;
+        canvas.height = GRID_SIZE.height * CELL_SIZE;
+        const ctx = canvas.getContext('2d');
+
+        function createRandomGrid() {
+            const grid = Array.from({ length: GRID_SIZE.height }, () => 
+                Array.from({ length: GRID_SIZE.width }, () => Math.random() < 0.3 ? (Math.random() < 0.5 ? AKANE_ID : AOI_ID) : 0)
+            );
+            return grid;
+        }
+
+        function drawGrid() {
+            for (let i = 0; i < GRID_SIZE.height; i++) {
+                for (let j = 0; j < GRID_SIZE.width; j++) {
+                    ctx.fillStyle = EMPTY_COLOR;
+                    if (grid[i][j] === AKANE_ID) {
+                        ctx.fillStyle = AKANE_COLOR;
+                    } else if (grid[i][j] === AOI_ID) {
+                        ctx.fillStyle = AOI_COLOR;
+                    }
+                    ctx.fillRect(j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                }
+            }
+        }
+
+        function getNewState(i, j) {
+            const checkGrid = [
+                grid[i - 1].slice(j - 1, j + 2),
+                grid[i].slice(j - 1, j + 2),
+                grid[i + 1].slice(j - 1, j + 2)
+            ];
+            let akaneNum = 0, aoiNum = 0;
+
+            for (const row of checkGrid) {
+                for (const cell of row) {
+                    if (cell === AKANE_ID) akaneNum++;
+                    if (cell === AOI_ID) aoiNum++;
+                }
+            }
+
+            if (akaneNum >= 1 && akaneNum + 1 === aoiNum || akaneNum >= 1 && akaneNum + 2 === aoiNum) {
+                return AKANE_ID;
+            }
+            if (aoiNum >= 1 && aoiNum + 1 === akaneNum || aoiNum >= 1 && aoiNum + 2 === akaneNum) {
+                return AOI_ID;
+            }
+            if (akaneNum === aoiNum) {
+                return grid[i][j];
+            }
+            return 0;
+        }
+
+        function newGeneration() {
+            const newGrid = Array.from({ length: GRID_SIZE.height }, () => Array(GRID_SIZE.width).fill(0));
+            for (let i = 1; i < GRID_SIZE.height - 1; i++) {
+                for (let j = 1; j < GRID_SIZE.width - 1; j++) {
+                    newGrid[i][j] = getNewState(i, j);
+                }
+            }
+            grid = newGrid;
+        }
+
+        canvas.addEventListener('click', (event) => {
+            const x = Math.floor(event.offsetX / CELL_SIZE);
+            const y = Math.floor(event.offsetY / CELL_SIZE);
+
+        // Ctrlキーが押されているかをチェック
+        const isCtrlPressed = event.ctrlKey;
+
+        if (isCtrlPressed) {
+            // シフトキーが押されている場合、AOIを設定
+            if (grid[y][x] === 0) {
+                grid[y][x] = AOI_ID; // Ctrl + 左クリックで AOI
+            } else {
+                grid[y][x] = 0; // AOIを削除
+            }
+        } else {
+            // 通常の左クリックの動作
+            if (grid[y][x] === 0) {
+                grid[y][x] = AKANE_ID; // 左クリックで AKANE
+            } else {
+                grid[y][x] = 0; // AKANEを削除
+            }
+        }
+            drawGrid();
+        });
+
+        let autoFlag = false;
+        document.addEventListener('keydown', (event) => {
+            if (event.key === ' ') {
+                autoFlag = !autoFlag; // Toggle auto step on space
+            } else if (event.key === 'r') {
+                grid = createRandomGrid(); // Random reset
+            } else if (event.key === 'd') {
+                grid = Array.from({ length: GRID_SIZE.height }, () => Array(GRID_SIZE.width).fill(0)); // Clear grid
+            }
+            drawGrid();
+        });
+
+    function gameLoop(currentTime) {
+        if (autoFlag && currentTime - lastUpdateTime >= updateInterval) {
+            newGeneration();
+            drawGrid();
+            lastUpdateTime = currentTime;
+        }
+        requestAnimationFrame(gameLoop);
+    }
+
+        drawGrid();
+        gameLoop();
+    </script>
+</body>
+</html>
