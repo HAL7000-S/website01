@@ -1,29 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <title>琴葉空間（2色・2状態セル・オートマトン・ライフゲーム）</title>
+    <meta name="description" content="このページでは、2色・2状態セル・オートマトン（2色ライフゲーム）について，琴葉姉妹に見立てながら実装・詳しく説明しています。">
+    <meta name="keywords" content="2色セル・オートマトン, 2状態セル・オートマトン, 2色ライフゲーム, 琴葉姉妹">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>琴葉空間</title>
+    <meta name="author" content="HAL7000-S">
+    <meta charset="UTF-8">
+    <meta name="robots" content="index, follow">
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* スクロールバーを隠す */
+            /* overflow: hidden; スクロールバーを隠す */
             width: 100%; /* 幅を100%に */
             height: 100%; /* 高さを100%に */
             background-color: white;
+            align-items: center;
+            justify-content: center;
         }
         canvas {
             display: block; /* ブロック要素にして余白をなくす */
             background-color: white; /* 背景色を指定 */
             border: 1px solid black;
         }
+
+
+
+        h1, a {
+            text-align: center;
+            color: #333;
+        }
+        h5 {
+            text-align: center;
+            color: #333;
+        }
+        ol {
+            margin: 20px auto;
+            text-align: center;
+            padding-left: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .image-container {
+            display: flex;
+            flex-direction: column; /* 縦に並べる */
+            align-items: center; /* 中央揃え */
+            margin: 20px 0;
+        }
+        img {
+            max-width: 100%;
+            max-height: 300px; /* 最大高さを設定 */
+            height: auto;
+            width: auto; /* 幅は自動で調整 */
+            margin: 10px 0; /* 上下のマージンを追加 */
+        }
     </style>
 </head>
 <body>
-    <a href="/website01/index.html">最初のサイトへ戻る。</a>
-    <a href="/website01/kotonohaLG/LG_guide.html">＜操作説明＞</a>
     <canvas id="gridCanvas"></canvas>
+
+    <hr>
+    <h1>参考動画</h1>
+    <a href="https://www.nicovideo.jp/watch/sm42126782" target="_blank" rel="noopener noreferrer">
+        <div class="image-container">
+        <img src="/website01/kotonohaLG/static/niconico.png" alt="説明動画" />
+        </div>
+        <p>https://www.nicovideo.jp/watch/sm42126782</p>
+    </a>
+
+    <hr>
+    <h1>ルール</h1>
+    <div class="image-container">
+        <img src="/website01/kotonohaLG/static/explain.png" alt="2色ライフゲームルール" />
+    </div>
+    <ol>
+        <li>・茜ちゃん，葵ちゃん単体では死．</li>
+        <li>・相手（茜ちゃんに対する葵ちゃんorその逆）と同じ人数であれば姉妹百合共存します．</li>
+        <li>・葵ちゃんの隣に二人以上の茜ちゃんがいると，4人の葵ちゃんに増えます．</li>
+        <li>これは，周りにいる相手の数+2人までは許容範囲で</li>
+        <li>相手が+3人以上になると愛に耐え切れず死に至るのが原因です．</li>
+    </ol>
+
+    <hr>
+    <h1>操作方法</h1>
+    <ol>
+        <li>[左クリック]で茜ちゃんを生成</li>
+        <li>[ctrl]を押しながら[左クリック]で葵ちゃんを生成</li>
+        <li>再度クリックでお帰りいただく</li>
+        <li>[スペース]でゲーム開始</li>
+        <li>再度スペースでゲーム停止</li>
+    </ol>
+    <hr>
+    <h1>組み合わせ色々！</h1>
+    <h5>※研究段階です．新状態を発見した場合はご連絡ください．</h5>
+    <div class="image-container">
+        <img src="/website01/kotonohaLG/static/moves.png" alt="移動状態" />
+        移動状態
+        <br>
+
+        <img src="/website01/kotonohaLG/static/statics.png" alt="安定状態" />
+        安定状態
+        <br>
+
+        <img src="/website01/kotonohaLG/static/generaters.png" alt="生成状態" />
+        生成状態
+    </div>
+
+    <hr>
+    <h1>その他</h1>
+
+    <p>琴葉空間はサイトをロードした画面の大きさに固定されます．</p>
+    <p>その他の2色2状態ライフゲームいろいろ：</p>
+    <a href="https://ja.wikipedia.org/wiki/%E3%82%BB%E3%83%AB%E3%83%BB%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3" target="_blank" rel="noopener noreferrer">
+        うぃき：https://ja.wikipedia.org/wiki/%E3%82%BB%E3%83%AB%E3%83%BB%E3%82%AA%E3%83%BC%E3%83%88%E3%83%9E%E3%83%88%E3%83%B3
+    </a>
+    <br>
+    <a href="https://note.com/108hassium/m/mb6134901b25e" target="_blank" rel="noopener noreferrer">
+        ガチ勢様：https://note.com/108hassium/m/mb6134901b25e
+    </a>
+    <p>琴葉空間のように互いに共存するやつは，種類が多すぎて未確認（2023/04/24段階）</p>
+    <a href="/website01/index.html">最初のサイトへ戻る。</a>
+
+
+
     <script>
         const CELL_SIZE = 15;
         const GRID_SIZE = {
