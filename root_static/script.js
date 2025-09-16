@@ -13,7 +13,7 @@ window.onload = function () {
 
 // 相手の名前代入
 if (!localStorage.getItem("name")) {
-    localStorage.setItem("name", yourName);
+    // localStorage.setItem("name", yourName);
     setUserName();
 } else {
     const storedName = localStorage.getItem("name");
@@ -22,7 +22,7 @@ if (!localStorage.getItem("name")) {
 
 // クリック時の変更
 function setUserName() {
-    const yourName = prompt("あなたの名前を入力してください。");
+    const yourName = prompt("お前の名前を入力してください。");
     localStorage.setItem("name", yourName);
     yourHeaddingName.textContent = `初めまして、${yourName}!`;
     }
